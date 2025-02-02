@@ -2,20 +2,33 @@
 
 #reset
 
-awk_version=$(awk --version | head -n1 | awk '{print $3}'); 
-latest_awk_version=$(apt-cache policy gawk | grep Candidate | awk '{print $2}'); 
-echo "Current awk version: $awk_version"; 
-echo "Latest available gawk version: $latest_awk_version"; 
-if [ "$awk_version" != "$latest_awk_version" ]; then 
-    echo "Would you like to update awk to the latest version? (y/n)"; 
-    read answer; 
-    if [ "$answer" = "y" ]; then 
-        sudo apt update -y && sudo apt install gawk -y; 
-    else 
-        echo "Update cancelled."; 
-    fi; 
-else 
-    echo "You are already using the latest version of awk."; 
+#!/bin/bash
+
+# Get the current awk version
+awk_version=$(awk --version | head -n1 | awk '{print $3}')
+
+# Get the latest available gawk version from the package manager
+latest_awk_version=$(apt-cache policy gawk | grep Candidate | awk '{print $2}')
+
+# Display the current and latest versions
+echo "Current awk version: $awk_version"
+echo "Latest available gawk version: $latest_awk_version"
+
+# Check if the current version is outdated
+if [ "$awk_version" != "$latest_awk_version" ]; then
+    # Prompt the user to update
+    echo "Would you like to update awk to the latest version? (y/n)"
+    read answer
+
+    # Process the user's response
+    if [ "$answer" = "y" ]; then
+        echo "Updating awk to the latest version..."
+        sudo apt update -y && sudo apt install gawk -y
+    else
+        echo "Update cancelled."
+    fi
+else
+    echo "You are already using the latest version of awk."
 fi
 
 sleep 1
