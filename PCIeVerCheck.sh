@@ -1,8 +1,8 @@
 #suport for pcie 1.0-5.0
-
-#reset
+# start with wget -qO PCIeVerCheck.sh 'https://machodrone.github.io/PCIeVerCheck/PCIeVerCheck.sh' && sudo bash PCIeVerCheck.sh
 
 #!/bin/bash
+reset
 
 # Get the current awk version
 awk_version=$(awk --version | head -n1 | awk '{print $3}')
