@@ -1,5 +1,8 @@
 #suport for pcie 1.0-5.0
-# start with wget -qO PCIeVerCheck.sh 'https://machodrone.github.io/PCIeVerCheck/PCIeVerCheck.sh' && sudo bash PCIeVerCheck.sh
+
+# start with wget -qO- https://machodrone.github.io/PCIeVerCheck/PCIeVerCheck.sh | bash
+
+# OLD start with wget -qO PCIeVerCheck.sh 'https://machodrone.github.io/PCIeVerCheck/PCIeVerCheck.sh' && sudo bash PCIeVerCheck.sh && rm PCIeVerCheck.sh
 
 #!/bin/bash
 reset
