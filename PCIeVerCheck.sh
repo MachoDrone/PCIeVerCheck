@@ -156,25 +156,25 @@ BEGIN {
         slot_count++;
     }
 }'
-# Check SSD for PCIe 1.0 to 5.0 support
-echo -e "\nSSD Check for PCIe 1.0-5.0 Compatibility:"
+# Check NVMe SSD for PCIe 1.0 to 5.0 support
+echo -e "\nNVMe SSD Check for PCIe 1.0-5.0 Compatibility:"
 pci_info=\$(sudo lspci -vvv 2>/dev/null | grep -A 30 NVMe | grep -i "LnkCap")
 while IFS= read -r line; do
     if [[ \$line =~ Speed[[:space:]]*([0-9]+)[[:space:]]*GT/s ]]; then
         speed=\${BASH_REMATCH[1]}
         case \$speed in
-            2) echo "SSD PCIe Compatibility: Supports PCIe 1.0";;
-            5) echo "SSD PCIe Compatibility: Supports PCIe 2.0";;
-            8) echo "SSD PCIe Compatibility: Supports PCIe 3.0";;
-            16) echo "SSD PCIe Compatibility: Supports PCIe 4.0";;
-            32) echo "SSD PCIe Compatibility: Supports PCIe 5.0";;
-            *) echo "SSD PCIe Compatibility: Unknown or unsupported speed";;
+            2) echo "NVMe SSD PCIe Compatibility: Supports PCIe 1.0";;
+            5) echo "NVMe SSD PCIe Compatibility: Supports PCIe 2.0";;
+            8) echo "NVMe SSD PCIe Compatibility: Supports PCIe 3.0";;
+            16) echo "NVMe SSD PCIe Compatibility: Supports PCIe 4.0";;
+            32) echo "NVMe SSD PCIe Compatibility: Supports PCIe 5.0";;
+            *) echo "NVMe SSD PCIe Compatibility: Unknown or unsupported speed";;
         esac
         break
     fi
 done <<< "\$pci_info"
 if [[ -z \$(echo \$pci_info | grep -E "Speed 2GT/s|Speed 5GT/s|Speed 8GT/s|Speed 16GT/s|Speed 32GT/s") ]]; then
-    echo "SSD PCIe Compatibility: No PCIe 1.0-5.0 SSD detected or check manually."
+    echo "NVMe SSD PCIe Compatibility: No PCIe 1.0-5.0 NVMe SSD detected or check manually."
 fi
 
 # Check for PCIe 1.0 to 5.0 slot for GPU
