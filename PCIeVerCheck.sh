@@ -197,5 +197,5 @@ done <<< "\$pci_info"
 if [[ -z \$(echo \$pci_info | grep -E "Speed 2GT/s|Speed 5GT/s|Speed 8GT/s|Speed 16GT/s|Speed 32GT/s") ]]; then
     echo "GPU Slot PCIe Compatibility: No PCIe 1.0-5.0 slot detected or check manually."
 fi
-sudo rm PCIEVerCheck.sh
+sudo rm PCIEVerCheck.sh -f
 EOF
